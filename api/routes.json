@@ -1,0 +1,8 @@
+{
+    "/api/*/_search?*=:searchstring": "/$1/?$2_like=:searchstring",
+    "/api/*?_sort=:sortstring&_order=:orderstring":"/$1?_sort=:sortstring&_order=:orderstring",
+    "/api/questions/_search?title=:searchstring": "/questions/?title_like=:searchstring",
+    "/api/questions/*?_embed=answers": "/questions/$1?_embed=answers",
+    "/api/*": "/$1"
+    
+  }

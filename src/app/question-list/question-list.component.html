@@ -1,0 +1,58 @@
+<br>
+
+
+<div class="row">
+<div class="col-8">
+  <h3>Questions on {{category_type}}</h3>
+</div>
+  <div class="col-4">
+    <button class="btn btn-primary float-right" (click)="filter = true">
+      <i class="fa fa-cog"></i>
+       Filter</button>
+  </div>
+  <div class="col-8"></div>
+<div class="col-4" *ngIf="filter">
+  Filter By
+  <ul class="list-group">
+    <li class="list-group-item">
+      <!-- Default checked -->
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" name="recent" [(ngModel)]="filterType.recent" id="defaultChecked2">
+        <label class="custom-control-label" for="defaultChecked2">Most recent</label>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input"name="noAns" [(ngModel)]="filterType.noAns" id="defaultChecked3" >
+        <label class="custom-control-label" for="defaultChecked3">No Answer</label>
+      </div>
+    </li>
+    <li class="list-group-item">
+    <div class="col-3">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button class="button btn-sm btn-info" (click)="applyFilter()">Apply</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button btn-sm btn-warning" (click)="filter = false">Cancel</button>
+      </div>
+      <!-- <button class="btn btn-sm btn-info" (click)="applyFilter()">Apply</button>
+      <button class="btn btn-sm btn-warning" (click)="filter = false">Cancel</button> -->
+    </div>
+    </li>
+  </ul>
+</div>
+</div>
+<br >
+<div class="list-group active quesList" *ngIf="noFound">
+  No Questions found!
+</div>
+<div class="list-group active quesList" *ngFor="let question of data;let i = index">
+  <a [routerLink]="'/question/'+ question.id" class="list-group-item list-group-item-action ">
+    <div class="d-flex w-100 justify-content-between">
+
+      <h5 class="mb-1">{{i+1}}. {{question.title}}</h5>
+      <small>Posted {{countDate(question.date_post)}}</small>
+    </div>
+    <p class="mb-1">{{question.summary}}</p>
+    <small id="description" [innerHtml]="sanitizer.bypassSecurityTrustHtml(question.description)"></small>
+  </a>
+</div>

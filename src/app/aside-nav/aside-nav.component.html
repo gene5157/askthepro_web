@@ -1,0 +1,83 @@
+<div class=" d-flex row" id="wrapper">
+  <div class="col-3">
+    <!-- Sidebar -->
+    <!-- <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Welcome {{name | uppercase}} </div>
+      <div class="list-group list-group-flush">
+        <a [routerLink]="'/userinfo'" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a [routerLink]="'/manage-question'" class="list-group-item list-group-item-action bg-light">Manage
+          Questions</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+      </div>
+    </div> -->
+    <div class="profile">
+        <div class="profile-sidebar">
+          <!-- SIDEBAR USERPIC -->
+          <div class="profile-userpic">
+            <img src="../assets/profile_logo.png" class="img-responsive" alt="">
+          </div>
+          <!-- END SIDEBAR USERPIC -->
+          <!-- SIDEBAR USER TITLE -->
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+              {{name | uppercase}}
+            </div>
+            <div class="profile-usertitle-job" >
+              User
+            </div>
+          </div>
+          <!-- END SIDEBAR USER TITLE -->
+          <!-- SIDEBAR BUTTONS -->
+          <div class="profile-userbuttons">
+            <button type="button" class="btn btn-success btn-sm">Setting</button>
+          </div>
+          <!-- END SIDEBAR BUTTONS -->
+          <!-- SIDEBAR MENU -->
+          <div class="profile-usermenu list-group list-group-flushs">
+            <ul class="nav">
+              <!-- <li class="list-group-item list-group-item-action" *ngIf="showUser['role'] == 'admin'">
+                <a [routerLink]="'/dashboard'">
+                <i class="glyphicon glyphicon-home"></i>
+                Dashboard </a>
+              </li> -->
+              <li class="list-group-item list-group-item-action">
+                <a [routerLink]="'/dashboard'">
+                <i class="glyphicon glyphicon-home"></i>
+                Dashboard </a>
+              </li>
+              <!-- <li class="list-group-item list-group-item-action ">
+                <a [routerLink]="'/manage-question'">
+                <i class="glyphicon glyphicon-user"></i>
+                Manage Questions </a>
+              </li> -->
+              <li class="list-group-item list-group-item-action ">
+                <a [routerLink]="'/post_question'" >
+                <i class="glyphicon glyphicon-ok"></i>
+                Post Question </a>
+              </li>
+              <!-- <li class="list-group-item list-group-item-action ">
+                <a href="#">
+                <i class="glyphicon glyphicon-flag"></i>
+                Help </a>
+              </li> -->
+            </ul>
+          </div>
+          <!-- END MENU -->
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+  </div>
+  <div class="col-8">
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid" style="background-color: whitesmoke;">
+
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+</div>

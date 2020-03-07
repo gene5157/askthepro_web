@@ -1,0 +1,101 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="home"
+      aria-selected="true">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="profile"
+      aria-selected="false">Registration</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
+    <form class="login-form">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" [(ngModel)]="email">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" [(ngModel)]="password">
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button class="btn btn-outline-primary" (click)="login()"> Login </button>
+        <button class="btn btn-outline-primary" [routerLink]="'/home'"> Cancel </button>
+      </div>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="profile-tab">
+    <ng-container>
+      <form class="form-horizontal" action="" method="POST">
+        <fieldset class="register-form">
+          <block-ui>
+          <div id="legend">
+            <legend class="">Register</legend>
+          </div>
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="username">Username</label>
+            <div class="controls">
+              <input type="text" id="username" name="username" [(ngModel)]="registerUser.username" placeholder="" class="input-xlarge">
+              <div *ngIf="registerUser.usernameInvalid" class="col-xl-7 col-lg-7">
+                <span class="warning" style="color:#e60000; font-size: 15px;">
+                  * Username is required
+                </span>
+              </div>
+              <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+            </div>
+            
+          </div>
+
+          <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email">E-mail</label>
+            <div class="controls">
+              <input type="text" id="email" name="email" [(ngModel)]="registerUser.email" placeholder="" class="input-xlarge">
+              <div *ngIf="registerUser.emailInvalid" class="col-xl-7 col-lg-7">
+                <span class="warning" style="color:#e60000; font-size: 15px;">
+                  * Email is required
+                </span>
+              </div>
+              <p class="help-block">Please provide your E-mail</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+              <input type="password" id="password" name="password" [(ngModel)]="registerUser.password" placeholder="" class="input-xlarge">
+              <div *ngIf="registerUser.pwdInvalid" class="col-xl-7 col-lg-7">
+                <span class="warning" style="color:#e60000; font-size: 15px;">
+                  * Password is required
+                </span>
+              </div>
+              <p class="help-block">Password should be at least 4 characters</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Password -->
+            <label class="control-label" for="password_confirm">Password (Confirm)</label>
+            <div class="controls">
+              <input type="password" id="password_confirm" [(ngModel)]="registerUser.password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+              <div *ngIf="registerUser.pwdMatchInvalid" class="col-xl-7 col-lg-7">
+                <span class="warning" style="color:#e60000; font-size: 15px;">
+                  * Password Not Match!
+                </span>
+              </div>
+              <p class="help-block">Please confirm password</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Button -->
+            <div class="controls">
+              <button class="btn btn-success" id="register" (click)="register()">Register</button>
+            </div>
+          </div>
+          </block-ui>
+        </fieldset>
+      </form>
+    </ng-container>
+  </div>
+</div>

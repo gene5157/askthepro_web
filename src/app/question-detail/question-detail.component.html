@@ -1,0 +1,155 @@
+<!-- 
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Favorite food</mat-label>
+    <input matInput placeholder="Ex. Pizza" value="Sushi">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+</form>
+<button type="button" mdbBtn color="primary" mdbWavesEffect>Primary</button> -->
+<div *ngIf="isLoaded == false">
+  Loading...
+</div>
+
+<mdb-card *ngIf="isLoaded == true" style="padding:20px;">
+  <br>
+  <mdb-card-body>
+    <mdb-card-title>
+      <div class="row">
+        <div class="col-8">
+
+          <!-- <div *ngIf="userData == undefined">
+            <mdb-icon far icon="user-circle"></mdb-icon>
+            Anonymous User
+            </div> -->
+          <span>
+            <h5>{{questionData.title}}</h5>
+          </span>
+
+
+        </div>
+        <div class="col-4">
+          Asked {{countDate(questionData.date_post)}}
+        </div>
+
+      </div>
+
+      <h6 class="text-muted mb-2">{{questionData.summary}}</h6>
+    </mdb-card-title>
+    <mdb-card-text [innerHtml]="sanitizer.bypassSecurityTrustHtml(questionData.description)">
+      
+    </mdb-card-text>
+    <div class="row float-right" style="text-align: center;" *ngIf="userData != undefined">
+      <span class="col-12">
+        Asked by
+      </span>
+      <div class="col-12">
+        <mdb-icon far icon="user-circle"></mdb-icon>
+        {{userData.username}}
+      </div>
+      <div class="col-12">
+        {{convertTime(questionData.date_post)}}
+      </div>
+    </div>
+    <div>
+      {{questionData.answers?.length}} Answer
+    </div>
+    <!-- <mdb-card >
+        <mdb-card-body>
+          {{questionData.answer.length}} Answer
+        </mdb-card-body>
+      </mdb-card> -->
+  </mdb-card-body>
+  <div *ngIf="questionData.answers?.length == 0">
+    <span>
+      No answer provided yet...
+    </span>
+  </div>
+  <!-- best asn -->
+  <mdb-card *ngIf="bestAnswer.length != 0 ">
+    <mdb-card-body>
+      <span class="badge badge-success">Best Answer</span>
+      <p>{{bestAnswer.title}}
+      </p>
+      <blockquote class="blockquote mb-0">
+        <!-- <p>{{ans.title}}</p> -->
+        <footer class="blockquote-footer" > {{bestAnswer.description}}</footer>
+      </blockquote>
+      <div class="float-right acard">
+        <mdb-card>
+          <mdb-card-body style="width: 150px;
+            text-align: center;">
+            <div class="row">
+              <span class="col-12"> Answered {{convertTime(bestAnswer.date_post)}}</span>
+              <div class="col-12">
+                By {{bestAnswer.user?.username}}
+              </div>
+              <div class="col-12">
+              </div>
+            </div>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+  <mdb-card *ngFor="let ans of newAnswerList">
+    <mdb-card-body>
+      <div class="row">
+        <div class="col-1" *ngIf="isUserPost">
+          <div class="float-left">
+            <span class="badge badge-pill cyan" style="cursor:pointer;" (click)="selectedBA(ans)" title="Select as Best Answer">
+              <i class="far fa-thumbs-up fa-2x" aria-hidden="true"></i>
+            </span>
+            <span style="font-size:10px;">Select as Best Answer</span>
+          </div>
+        </div>
+        <div class="col-11">
+          <p>{{ans.title}}</p>
+          <blockquote class="blockquote mb-0">
+            <!-- <p>{{ans.title}}</p> -->
+            <footer class="blockquote-footer" [innerHtml]="sanitizer.bypassSecurityTrustHtml(ans.description)"></footer>
+          </blockquote>
+          <div class="float-right acard">
+            <mdb-card>
+              <mdb-card-body style="width: 150px;
+            text-align: center;">
+                <div class="row">
+                  <span class="col-12"> Answered {{convertTime(ans.date_post)}}</span>
+                  <div class="col-12">
+                    By {{ans.user?.username}}
+                  </div>
+                  <div class="col-12">
+
+                  </div>
+                </div>
+              </mdb-card-body>
+            </mdb-card>
+          </div>
+        </div>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+
+  <!-- <a href="#!" class="card-link">Card link</a>
+    <a href="#!" class="card-link">Another link</a> -->
+
+  <button class="btn btn-info" (click)="change(true)">Post Your Answer</button>
+
+</mdb-card>
+
+<mdb-card *ngIf="postAnswer == true">
+  <mdb-card-body>
+    <p> Your Answer</p>
+    <div class="md-form">
+      <input type="text" id="title" name="title" [(ngModel)]="submitAnswer.title" class="form-control">
+      <label for="title" class="active">Title</label>
+    </div>
+    <div [innerHTML]="submitAnswer.description" class="summernote" id="Description"></div>
+    <button class="btn btn-sm btn-indigo" (click)="send()"> Submit Answer</button>
+  </mdb-card-body>
+</mdb-card>

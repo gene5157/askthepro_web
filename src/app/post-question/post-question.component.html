@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="body">
+    <div class="row">
+      <div class="col-12">
+        <!-- title: string; 
+    date_post: Date; 
+    user_id: string;
+    summary: string;
+    description: string; 
+    category: string;
+    categories_id: string;
+    isAnswered: boolean;
+    answer:Answer[]; -->
+        <!-- Default form contact -->
+        <form class="text-center border border-light p-5" action="#!">
+
+          <p class="h4 mb-4">Post Your Question</p>
+
+          <!-- title -->
+          <!-- <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"> -->
+          <div class="md-form">
+            <input type="text" id="title" name="title" [(ngModel)]="post.title" class="form-control">
+            <label for="title" class="active">Title</label>
+            <div *ngIf="valid.titleInvalid" class="col-xl-7 col-lg-7">
+              <span class="warning" style="color:#e60000; font-size: 15px;">
+                Title cannot be empty!
+              </span>
+            </div>
+          </div>
+          <!-- date -->
+          <div class="md-form">
+            <input type="text" id="date" name="date" class="form-control mb-4" [(ngModel)]="current_date"
+              placeholder="date" disabled>
+            <label for="date" class="active">Date Post</label>
+          </div>
+          <!-- summary -->
+          <div class="md-form">
+            <input type="text" id="summary" name="summary" [(ngModel)]="post.summary" class="form-control mb-4">
+            <label for="summary" class="active">Summary</label>
+            <div *ngIf="valid.summaryInvalid" class="col-xl-7 col-lg-7">
+              <span class="warning" style="color:#e60000; font-size: 15px;">
+                Please enter summary!
+              </span>
+            </div>
+          </div>
+          <!-- Category -->
+          <label>Category</label>
+          <select class="browser-default custom-select mb-4" name="category" placeholder="Choose a category"
+            [(ngModel)]="post.categories_id">
+            <option value="" selected="selected">Choose a category</option>
+            <option value="{{category.id}}" *ngFor="let category of categories"> {{category.name}} </option>
+          </select>
+          <div *ngIf="valid.categoryInvalid" class="col-xl-7 col-lg-7">
+            <span class="warning" style="color:#e60000; font-size: 15px;">
+              Please select a category!
+            </span>
+          </div>
+          <!-- tag -->
+          <div class="md-form">
+            <!-- <input type="text" id="tag" name="tag"  class="form-control mb-4"> -->
+            <label for="tag" class="active">Tag</label>
+            <!-- <div class="chips chips-placeholder"></div> -->
+            <input type="text" data-role="tagsinput" placeholder="Add tags">
+          </div>
+          <div class="md-form">
+            <div id="tagDiv" style="font-size:10px;display:block;">
+              <div class="row">
+                <div class="col-4" *ngFor="let tag of tags">
+                  <div class="card" style="width:10rem;">
+                    <div class="card-body">
+                      <p class="card-title">{{tag.name}}</p>
+                      <p class="card-text" style="font-size: 9px"> {{shortDesc(tag.desc)}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- description -->
+          <div class="form-group">
+            <div [innerHTML]="post.description" class="summernote" id="description"></div>
+            <!-- <textarea class="form-control rounded-0" name="description" id="description" rows="3"
+              placeholder="Description" [(ngModel)]="post.description"></textarea> -->
+            <div *ngIf="valid.descInvalid" class="col-xl-7 col-lg-7">
+              <span class="warning" style="color:#e60000; font-size: 15px;">
+                Description cannot be empty!
+              </span>
+            </div>
+          </div>
+
+
+          <!-- Copy -->
+          <!-- <div class="custom-control custom-checkbox mb-4">
+          <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+          <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
+        </div> -->
+
+          <!-- Send button -->
+          <button class="btn btn-info btn-block" (click)="postQuestion()" type="submit">Post Question</button>
+
+        </form>
+        <!-- Default form contact -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,600 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "username": "mark",
+      "email": "mark@gmail.com",
+      "password": "sha1$97358e0e$1$a60391598f3a174b380d5be373a86bc22f69d21b",
+      "mobile": 124561325,
+      "registered": true,
+      "isActive": true,
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "username": "steven",
+      "email": "steven@gmail.com",
+      "password": "sha1$395c405e$1$6f220d5467d8955eb03cac40bdd2fc9af7618987",
+      "mobile": 126669993,
+      "registered": true,
+      "isActive": true,
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "sha1$d538df34$1$64bbe9259acd99be1475c55b9b9be8ef20e0ef78",
+      "mobile": 125559991,
+      "registered": true,
+      "isActive": true,
+      "role": "admin"
+    },
+    {
+      "username": "test",
+      "email": "test@gmail.com",
+      "password": "sha256$565ca2d2$1$7698ec8be6ee36fc739ce42eda907892f2a5567a1583e9cd0772d5338027e240",
+      "registered": true,
+      "isActive": true,
+      "role": "user",
+      "id": 4
+    },
+    {
+      "username": "a",
+      "email": "test1@gmail.com",
+      "password": "sha256$d77811ec$1$d36a792d89eeac1052e272da41c58997fac65debce5f61af78e761a2bf39c5d7",
+      "registered": true,
+      "isActive": true,
+      "role": "user",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "mark",
+      "email": "mark@gmail.com",
+      "password": "sha1$97358e0e$1$a60391598f3a174b380d5be373a86bc22f69d21b",
+      "mobile": 124561325,
+      "registered": true,
+      "isActive": true,
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "username": "steven",
+      "email": "steven@gmail.com",
+      "password": "sha1$395c405e$1$6f220d5467d8955eb03cac40bdd2fc9af7618987",
+      "mobile": 126669993,
+      "registered": true,
+      "isActive": true,
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "sha1$d538df34$1$64bbe9259acd99be1475c55b9b9be8ef20e0ef78",
+      "mobile": 125559991,
+      "registered": true,
+      "isActive": true,
+      "role": "admin"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "title": "What is Angular?",
+      "date_post": "2020-01-18T00:00:00.000Z",
+      "user_id": 2,
+      "summary": "Angular begineer",
+      "description": "Anyone know what is angular? Im just start to learn Angular and abit confusing on Angular and AngularJS.",
+      "category": "Web Programming",
+      "categories_id": "1",
+      "tag": [
+        {
+          "id": 1,
+          "name": "C",
+          "desc": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform."
+        },
+        {
+          "id": 2,
+          "name": "C#",
+          "desc": "C# 3.0 ('C# Orcas') introduces several language extensions that build on C# 2.0 to support the creation and use of higher order, functional style class libraries."
+        },
+        {
+          "id": 8,
+          "name": "Html",
+          "desc": "HTML (Hypertext Markup Language) is the standard markup language used for structuring web pages and formatting content. HTML describes the structure of a website semantically along with cues for presentation, making it a markup language, rather than a programming language. HTML works in conjunction primarily with CSS and JavaScript, adding style and behavior to the pages. The most recent revision to the HTML specification is HTML5.2 also:webpage"
+        }
+      ],
+      "isAnswer": true
+    },
+    {
+      "id": 2,
+      "title": "How to create angular project?",
+      "date_post": "2020-02-18T00:00:00.000Z",
+      "user_id": 1,
+      "summary": "Need help on create angular project!",
+      "description": "Suppose I'm familiar with developing client-side applications in jQuery, but now I'd like to start using AngularJS. Can you describe the paradigm shift that is necessary? Here are a few questions that might help you frame an answer.",
+      "category": "Web Programming",
+      "categories_id": "1",
+      "isAnswer": true,
+      "tag": [
+        {
+          "id": 1,
+          "name": "C",
+          "desc": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform."
+        },
+        {
+          "id": 2,
+          "name": "C#",
+          "desc": "C# 3.0 ('C# Orcas') introduces several language extensions that build on C# 2.0 to support the creation and use of higher order, functional style class libraries."
+        },
+        {
+          "id": 8,
+          "name": "Html",
+          "desc": "HTML (Hypertext Markup Language) is the standard markup language used for structuring web pages and formatting content. HTML describes the structure of a website semantically along with cues for presentation, making it a markup language, rather than a programming language. HTML works in conjunction primarily with CSS and JavaScript, adding style and behavior to the pages. The most recent revision to the HTML specification is HTML5.2 also:webpage"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "How to create a mock json server",
+      "date_post": "2020-02-18T00:00:00.000Z",
+      "user_id": 2,
+      "summary": "Mock Json server not able to build due to error#355 lack of resource",
+      "description": "I tried working with Apiary and made a universal template to send JSON to mock server and have this code:This code doesn't send JSON properly, but I don't know why. The JSON string can be different in every call. I can't use Struct for this.",
+      "category": "Web Database",
+      "categories_id": "2",
+      "isAnswer": true,
+      "tag": [
+        {
+          "id": 1,
+          "name": "C",
+          "desc": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Json server fail to run",
+      "date_post": "2020-01-25T00:00:00.000Z",
+      "user_id": 1,
+      "summary": "I'm not familiar with napping, but using Golang's net/http package works fine (playground)",
+      "description": "Can this be updated to gather / inspect all it's errors? This is (for me, at least) the top result on google for making post requests in Go, and it's a good answer, but I see a ton of example code that just ignores errors, and I think it encourages bad practice in newbies. Then again, if anyone regularly ignores errors, I suppose they'll learn why not to eventually, but why not encourage good practice to begin with?",
+      "category": "Web Database",
+      "categories_id": "2",
+      "isAnswer": true,
+      "tag": [
+        {
+          "id": 3,
+          "name": "Java",
+          "desc": "JavaScript (not to be confused with Java) is a high-level, dynamic, multi-paradigm, object-oriented, prototype-based, weakly-typed, and interpreted language used for both client-side and server-side scripting."
+        },
+        {
+          "id": 8,
+          "name": "Html",
+          "desc": "HTML (Hypertext Markup Language) is the standard markup language used for structuring web pages and formatting content. HTML describes the structure of a website semantically along with cues for presentation, making it a markup language, rather than a programming language. HTML works in conjunction primarily with CSS and JavaScript, adding style and behavior to the pages. The most recent revision to the HTML specification is HTML5.2 also:webpage"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Angular project not able to create!",
+      "date_post": "2020-02-16T00:00:00.000Z",
+      "user_id": 1,
+      "summary": "Error bootstrap.min.js module not found!",
+      "description": "I get this error : cannot use jsonValue (type []byte) as type io.Reader in argument to http.Post: []byte does not implement io.Reader (missing Read method)",
+      "category": "Angular",
+      "categories_id": "3",
+      "isAnswer": true,
+      "tag": [
+        {
+          "id": 2,
+          "name": "C#",
+          "desc": "C# 3.0 ('C# Orcas') introduces several language extensions that build on C# 2.0 to support the creation and use of higher order, functional style class libraries."
+        },
+        {
+          "id": 8,
+          "name": "Html",
+          "desc": "HTML (Hypertext Markup Language) is the standard markup language used for structuring web pages and formatting content. HTML describes the structure of a website semantically along with cues for presentation, making it a markup language, rather than a programming language. HTML works in conjunction primarily with CSS and JavaScript, adding style and behavior to the pages. The most recent revision to the HTML specification is HTML5.2 also:webpage"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Angular Bootstrap need help! Bootstrap not able to run in Angular",
+      "date_post": "2020-02-25T00:00:00.000Z",
+      "user_id": 1,
+      "summary": "Bootstrap malfunction",
+      "description": "I am new here and also a beginner in dealing with R. I am hoping that someone here can help me. I would like to create a model in the form: HS.model <- ' visual =~ x1 + x2 + x3",
+      "category": "Angular",
+      "categories_id": "3",
+      "isAnswer": null,
+      "tag": [
+        {
+          "id": 1,
+          "name": "C",
+          "desc": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform."
+        },
+        {
+          "id": 2,
+          "name": "C#",
+          "desc": "C# 3.0 ('C# Orcas') introduces several language extensions that build on C# 2.0 to support the creation and use of higher order, functional style class libraries."
+        },
+        {
+          "id": 3,
+          "name": "Java",
+          "desc": "JavaScript (not to be confused with Java) is a high-level, dynamic, multi-paradigm, object-oriented, prototype-based, weakly-typed, and interpreted language used for both client-side and server-side scripting."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "error TS2581: Cannot find name '$'.",
+      "date_post": "2020-01-18T00:00:00.000Z",
+      "user_id": 2,
+      "summary": "Error TS2581",
+      "description": "I have picked up a code segement from the top voted author's answer from this question: https://answers.opencv.org/question/9863/fill-holes-of-a-binary-image/ Refomatted it as: cv::Mat image",
+      "category": "Angular",
+      "categories_id": "3",
+      "isAnswer": null,
+      "tag": []
+    },
+    {
+      "id": 8,
+      "title": "How do I get started with Node.js!",
+      "date_post": "2020-02-26T00:00:00.000Z",
+      "user_id": 2,
+      "summary": "NodeJS",
+      "description": "Tutorials NodeSchool.io interactive lessons The Art of Node (an introduction to Node.js) Hello World Hello World Web Server (paid) Node.js guide Build a blog with Node.js, express and MongoDB … by the programming community Node.js Recipes Node.js Tutorial 30 days of Node Developer Sites Joyent's developer site for node Tutorials Teacher Videos Node Tuts (Node.js video tutorials",
+      "category": "Angular",
+      "categories_id": "1",
+      "isAnswer": null,
+      "tag": []
+    },
+    {
+      "id": 9,
+      "title": "How to decide when to use Node.js?!",
+      "date_post": "2020-02-29T00:00:00.000Z",
+      "user_id": 1,
+      "summary": "When to use NodeJS",
+      "description": "decide when to use Node.js. The web application I have in mind is something like Bitly - takes some content, archives it. From all the homework I have been doing in the last few days, I obtained … the following information. Node.js is a command-line tool that can be run as a regular web server and lets one run JavaScript programs utilizes the great V8 JavaScript engine is very good when you ",
+      "category": "Angular",
+      "categories_id": "1",
+      "isAnswer": null,
+      "tag": [
+        {
+          "id": 4,
+          "name": "Database Programming",
+          "desc": "A database program is the heart of a business information system and provides file creation, data entry, update, query and reporting functions. The traditional term for database software is database management system"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Web programming language?Angular?c#?PHP?",
+      "date_post": "2020-02-18T00:00:00.000Z",
+      "user_id": 1,
+      "summary": "Web programming for tutorial",
+      "description": ".I don't know if it matters but I program in a Linux enviroment(Ubuntu). I don't want to do hardcore web programming ,I only want to be able to develop complete websites and understand network concepts. … I want to go learn web programming,but besides names and a little of html I don't know anything.So I ask you what programming languages you recommend,why,what can be done with it,tools to learn ",
+      "category": "Angular",
+      "categories_id": "3",
+      "categoryId": 3,
+      "isAnswer": true,
+      "tag": [
+        {
+          "id": 1,
+          "name": "C",
+          "desc": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform."
+        },
+        {
+          "id": 5,
+          "name": "AngularJS",
+          "desc": "Use for questions about AngularJS (1.x), the open-source JavaScript framework. Do NOT use this tag for Angular 2 or later versions; instead, use the [angular] tag also:angular1.x, angular.js"
+        },
+        {
+          "id": 6,
+          "name": "Angular",
+          "desc": "Questions about Angular (not to be confused with AngularJS), the web framework from Google. Use this tag for Angular questions which are not specific to an individual version. For the older AngularJS (1.x) web framework, use the angularjs tag also:angular4.x, angular4, angularjs2"
+        },
+        {
+          "id": 8,
+          "name": "Html",
+          "desc": "HTML (Hypertext Markup Language) is the standard markup language used for structuring web pages and formatting content. HTML describes the structure of a website semantically along with cues for presentation, making it a markup language, rather than a programming language. HTML works in conjunction primarily with CSS and JavaScript, adding style and behavior to the pages. The most recent revision to the HTML specification is HTML5.2 also:webpage"
+        }
+      ]
+    },
+    {
+      "title": "How Date Parsing Works with JSON Serializers",
+      "summary": "JSON Dates are not dates – they are Strings",
+      "categories_id": "3",
+      "category": "Angular Web",
+      "description": "<p><span style=\\\"color: rgb(62, 67, 62); font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 17.515px; text-align: start;\\\">The </span><span style=\\\"font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 17.515px; text-align: start; background-color: rgb(255, 255, 0);\\\">problem </span><span style=\\\"color: rgb(62, 67, 62); font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 17.515px; text-align: start;\\\">with dates in JSON – and really JavaScript in general – is that JavaScript doesn’t have a date literal. You can represent strings, numbers, Booleans and even objects, arrays and RegEx expressions with language specific literals, but&nbsp;</span><em style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; min-width: 0px; color: rgb(62, 67, 62); font-size: 17.515px; text-align: start;\\\">there’s no equivalent literal representation for dates</em><span style=\\\"color: rgb(62, 67, 62); font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 17.515px; text-align: start;\\\">. Which seems like a rather major omission given that dates are pretty important in computing and business environments.</span><br></p>",
+      "user_id": 1,
+      "date_post": "2020-03-06T15:10:49.975Z",
+      "id": 11
+    },
+    {
+      "title": "How Decoding the Date",
+      "summary": "decoding the date into json format",
+      "categories_id": "3",
+      "category": "Angular Web",
+      "description": "<p>Need help on parsing the data. code example as below</p><p><span class=\\\"hljs-comment\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(87, 166, 74); font-style: italic; font-size: 18.128px; text-align: start; white-space: pre;\\\">// JSON encoded date</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\"></span><span class=\\\"hljs-keyword\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(86, 156, 214); font-size: 18.128px; text-align: start; white-space: pre;\\\">var</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\"> json = </span><span class=\\\"hljs-string\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(214, 157, 133); font-size: 18.128px; text-align: start; white-space: pre;\\\">\\\"\\\\\"2014-01-01T23:28:56.782Z\\\\\"\\\"</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\">;</span><span class=\\\"hljs-keyword\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(86, 156, 214); font-size: 18.128px; text-align: start; white-space: pre;\\\">var</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\"> dateStr = </span><span class=\\\"hljs-built_in\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(78, 201, 176); font-size: 18.128px; text-align: start; white-space: pre;\\\">JSON</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\">.parse(json);  </span><span class=\\\"hljs-built_in\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(78, 201, 176); font-size: 18.128px; text-align: start; white-space: pre;\\\">console</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\">.log(dateStr); </span><span class=\\\"hljs-comment\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(87, 166, 74); font-style: italic; font-size: 18.128px; text-align: start; white-space: pre;\\\">// 2014-01-01T23:28:56.782Z</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\">        </span><span class=\\\"hljs-keyword\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(86, 156, 214); font-size: 18.128px; text-align: start; white-space: pre;\\\">var</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\"> date = </span><span class=\\\"hljs-keyword\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(86, 156, 214); font-size: 18.128px; text-align: start; white-space: pre;\\\">new</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\"> </span><span class=\\\"hljs-built_in\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(78, 201, 176); font-size: 18.128px; text-align: start; white-space: pre;\\\">Date</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\">(dateStr);</span><span class=\\\"hljs-built_in\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(78, 201, 176); font-size: 18.128px; text-align: start; white-space: pre;\\\">console</span><span style=\\\"color: rgb(245, 245, 245); font-family: consolas, monospace; font-size: 18.128px; text-align: start; white-space: pre; background-color: rgb(48, 48, 48);\\\">.log(date);  </span><span class=\\\"hljs-comment\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(87, 166, 74); font-style: italic; font-size: 18.128px; text-align: start; white-space: pre;\\\">// Wed Jan 01 2014 13:28:56 GMT-1000 (Hawaiian Standard Time)</span></p><p><span class=\\\"hljs-comment\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(87, 166, 74); font-style: italic; font-size: 18.128px; text-align: start; white-space: pre;\\\">any example?thanks</span></p><p><span class=\\\"hljs-comment\\\" style=\\\"padding: 0px; margin: 0px; border: 0px; outline: 0px; line-height: inherit; vertical-align: baseline; font-family: consolas, monospace; min-width: 0px; color: rgb(87, 166, 74); font-style: italic; font-size: 18.128px; text-align: start; white-space: pre;\\\"><br></span><br></p>",
+      "user_id": 1,
+      "date_post": "2020-03-06T15:14:33.890Z",
+      "isAnswered": null,
+      "id": 12
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Web Programming",
+      "desc": "Web development is the work involved in developing a website for the Internet or an intranet. Web development can range from developing a simple single static page of plain text to complex web-based internet applications, electronic businesses, and social network services."
+    },
+    {
+      "id": 2,
+      "name": "Web Database",
+      "desc": "A Web database is a database application designed to be managed and accessed through the Internet. Website operators can manage this collection of data and present analytical results based on the data in the Web database application. Web databases can organize personal or business data."
+    },
+    {
+      "id": 3,
+      "name": "Angular Web",
+      "desc": "Angular is a TypeScript-based open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS."
+    },
+    {
+      "id": 4,
+      "name": "Database Programming",
+      "desc": "A database program is the heart of a business information system and provides file creation, data entry, update, query and reporting functions. The traditional term for database software is database management system"
+    }
+  ],
+  "categorys": [
+    {
+      "id": 1,
+      "name": "Web Programming",
+      "desc": "Web development is the work involved in developing a website for the Internet or an intranet. Web development can range from developing a simple single static page of plain text to complex web-based internet applications, electronic businesses, and social network services."
+    },
+    {
+      "id": 2,
+      "name": "Web Database",
+      "desc": "A Web database is a database application designed to be managed and accessed through the Internet. Website operators can manage this collection of data and present analytical results based on the data in the Web database application. Web databases can organize personal or business data."
+    },
+    {
+      "id": 3,
+      "name": "Angular Web",
+      "desc": "Angular is a TypeScript-based open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS."
+    },
+    {
+      "id": 4,
+      "name": "Database Programming",
+      "desc": "A database program is the heart of a business information system and provides file creation, data entry, update, query and reporting functions. The traditional term for database software is database management system"
+    }
+  ],
+  "tag": [
+    {
+      "id": 1,
+      "name": "C",
+      "desc": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform."
+    },
+    {
+      "id": 2,
+      "name": "C#",
+      "desc": "C# 3.0 ('C# Orcas') introduces several language extensions that build on C# 2.0 to support the creation and use of higher order, functional style class libraries."
+    },
+    {
+      "id": 3,
+      "name": "Java",
+      "desc": "JavaScript (not to be confused with Java) is a high-level, dynamic, multi-paradigm, object-oriented, prototype-based, weakly-typed, and interpreted language used for both client-side and server-side scripting."
+    },
+    {
+      "id": 4,
+      "name": "Database Programming",
+      "desc": "Imperative programming is a paradigm of expressing the logic of a computer program or computation by explicitly describing its control flow in terms of "
+    },
+    {
+      "id": 5,
+      "name": "AngularJS",
+      "desc": "Use for questions about AngularJS (1.x), the open-source JavaScript framework. Do NOT use this tag for Angular 2 or later versions; instead, use the [angular] tag also:angular1.x, angular.js"
+    },
+    {
+      "id": 6,
+      "name": "Angular",
+      "desc": "Questions about Angular (not to be confused with AngularJS), the web framework from Google. Use this tag for Angular questions which are not specific to an individual version. For the older AngularJS (1.x) web framework, use the angularjs tag also:angular4.x, angular4, angularjs2"
+    },
+    {
+      "id": 7,
+      "name": "PHP",
+      "desc": "PHP is a widely used, high-level, dynamic, object-oriented and interpreted scripting language primarily designed for server-side web development. Used for questions about the PHP language also:php-oop, php-namespaces, php-cg"
+    },
+    {
+      "id": 8,
+      "name": "Html",
+      "desc": "HTML (Hypertext Markup Language) is the standard markup language used for structuring web pages and formatting content. HTML describes the structure of a website semantically along with cues for presentation, making it a markup language, rather than a programming language. HTML works in conjunction primarily with CSS and JavaScript, adding style and behavior to the pages. The most recent revision to the HTML specification is HTML5.2 also:webpage"
+    }
+  ],
+  "answers": [
+    {
+      "id": 1,
+      "title": "Need more information on your question",
+      "date_post": "2020-02-27",
+      "userId": 3,
+      "questionId": 1,
+      "user": {
+        "username": "admin",
+        "email": "admin@gmail.com"
+      },
+      "description": "It's always a terrible idea to contribute code examples of skipping TLS verification in any scenario in any language... you accidentally perpetuate a lot copy/paste \"workarounds\" by neophytes who visit StackOverflow and don't understand the nature of why fixing TLS errors is crucial. Either fix your certificate import path (if using self-signed for testing, import those) or fix your machine's certificate chain, or find out why your server is presenting an invalid certificate that can't be verified by your client.",
+      "isBestAnswered": true
+    },
+    {
+      "id": 2,
+      "title": "Try npm rebuild ",
+      "date_post": "2020-02-24",
+      "userId": 1,
+      "questionId": 1,
+      "user": {
+        "username": "mark",
+        "email": "mark@gmail.com"
+      },
+      "description": "One thing I don't exactly like about this answer is the way it composes the JSON object, which is potentially exploitable via injection. A better way would be to compose an object and then transform it to JSON (with the proper escaping).",
+      "isBestAnswered": false
+    },
+    {
+      "id": 3,
+      "title": "If you already have a struct.",
+      "date_post": "2020-02-19",
+      "userId": 3,
+      "questionId": 2,
+      "user": {
+        "username": "admin",
+        "email": "admin@gmail.com"
+      },
+      "description": "To use the mock server, import your spec into SwaggerHub and enable \"API Auto Mocking\". Mock responses can be JSON, YAML and XML, and are generated based on your response schemas and the example, default and enum values defined in the schemas",
+      "isBestAnswered": true
+    },
+    {
+      "id": 4,
+      "title": "An easy way to create simple mock from an OpenAPI (fka. Swagger) spec without code is to use a tool call prism available at http://github.com/stoplightio/prism ",
+      "date_post": "2020-02-19",
+      "userId": 2,
+      "questionId": 2,
+      "user": {
+        "username": "steven",
+        "email": "steven@gmail.com"
+      },
+      "description": "The mock server will return a dynamic response based on the OpenAPI spec. If examples are provided in the spec, prism will return them, if not it will generate dummy data based on the spec.",
+      "isBestAnswered": false
+    },
+    {
+      "id": 5,
+      "title": "Angular is not simple",
+      "date_post": "2020-02-18T00:00:00.000Z",
+      "userId": 1,
+      "questionId": 3,
+      "user": {
+        "username": "mark",
+        "email": "mark@gmail.com"
+      },
+      "description": "ui-router allows for nested views and multiple named views. This is very useful with larger app where you may have pages that inherit from other sections.",
+      "isBestAnswered": true
+    },
+    {
+      "id": 6,
+      "title": "Anuglar.....",
+      "date_post": "2020-02-22T00:00:00.000Z",
+      "userId": 3,
+      "questionId": 3,
+      "user": {
+        "username": "admin",
+        "email": "admin@gmail.com"
+      },
+      "description": "Given the OpenAPI/Swagger spec, you can use Swagger Codegen to generate server stub in different server frameworks (e.g. Java Spring. PHP Slim, Ruby on Rails5, etc).Here is the related documentation:https://github.com/swagger-api/swagger-codegen/wiki/Server-stub-generator-HOWTOUPDATE: In May 2018, about 50 top contributors of Swagger Codegen decided to fork the project to create a community-driven version called OpenAPI Generator. Please refer to the Q&A for the reasons behind the fork.",
+      "isBestAnswered": false
+    },
+    {
+      "id": 7,
+      "title": "RE Angular",
+      "date_post": "2020-03-01T00:00:00.000Z",
+      "userId": 4,
+      "questionId": 3,
+      "user": {
+        "username": "asd",
+        "email": "asd@gmail.com"
+      },
+      "description": "ui-router allows for you to have strong-type linking between states based on state names. Change the url in one place will update every link to that state when you build your links with ui-sref. Very useful for larger projects where URLs might change.",
+      "isBestAnswered": null
+    },
+    {
+      "id": 8,
+      "title": "Imposter is a A scriptable, multipurpose mock server.",
+      "date_post": "2020-01-30",
+      "userId": 2,
+      "questionId": 4,
+      "user": {
+        "username": "steven",
+        "email": "steven@gmail.com"
+      },
+      "description": "Very easy to setup in a Docker environment and provides a Swagger UI to play with your mock api.Create a configuration file for Imposter in config/openapi-plugin-petstore-config.json",
+      "isBestAnswered": true
+    },
+    {
+      "id": 9,
+      "title": "ans test 3",
+      "date_post": "2020-02-25",
+      "userId": 3,
+      "questionId": 4,
+      "user": {
+        "username": "admin",
+        "email": "admin@gmail.com"
+      },
+      "description": "test3",
+      "isBestAnswered": false
+    },
+    {
+      "id": 10,
+      "title": "PageViewController current page index in Swift",
+      "date_post": "2020-02-16",
+      "userId": 3,
+      "questionId": 5,
+      "user": {
+        "username": "admin",
+        "email": "admin@gmail.com"
+      },
+      "description": "Yes, you could use the func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)",
+      "isBestAnswered": true
+    },
+    {
+      "id": 11,
+      "title": "Here is the docker container for mock api server from swagger yaml.",
+      "date_post": "2020-02-23",
+      "userId": 2,
+      "questionId": 10,
+      "user": {
+        "username": "steven",
+        "email": "steven@gmail.com"
+      },
+      "description": "Open http://localhost:8443/_spec/ to play with your Mock Server and Swagger UI",
+      "isBestAnswered": true
+    },
+    {
+      "title": "Angular Tutorial: Getting Started With Angular 8",
+      "date_post": "2020-03-04T16:18:14.872Z",
+      "userId": 1,
+      "questionId": 1,
+      "user": {
+        "username": "mark",
+        "email": "mark@gmail.com"
+      },
+      "description": "<h2 style=\\\"font-family: &quot;Open Sans&quot;, sans-serif; color: rgb(74, 74, 74); font-size: 1.125rem;\\\"><span style=\\\"font-weight: bolder;\\\">Evolution of&nbsp;Angular</span></h2><p style=\\\"line-height: 1.7; word-break: break-word; color: rgb(74, 74, 74); font-family: &quot;Open Sans&quot;, sans-serif;\\\">Angular is a JavaScript-based open-source framework for building client-side web applications. So, let us first understand Javascript. JavaScript runs on the client-side of the web, which can be used to design or program how the web pages behave on the occurrence of an event. Typically, JavaScript is used for interface interactions, slideshows, and other interactive components. JavaScript evolved quickly and has also been used for server-side programming (like in Node.js), game development, etc.</p>",
+      "isBestAnswered": null,
+      "id": 12
+    },
+    {
+      "title": "Working solution",
+      "userId": 2,
+      "questionId": 3,
+      "user": {
+        "username": "steven",
+        "email": "steven@gmail.com"
+      },
+      "description": "<p>Ensure that your shell is placed in the parent directory of config and run</p>",
+      "isBestAnswered": null,
+      "id": 13
+    },
+    {
+      "title": "Understanding @Output and EventEmitter in Angular",
+      "date_post": "2020-03-06T11:45:32.732Z",
+      "userId": 1,
+      "questionId": 1,
+      "user": {
+        "username": "mark",
+        "email": "mark@gmail.com"
+      },
+      "description": "<p pid=\\\"2\\\" style=\\\"margin: 5px 0px 15px; padding-top: 0px; color: rgb(34, 38, 53); font-family: Cambria, serif; font-size: 19px;\\\">In Angular, a component can emit an event using&nbsp;<strong style=\\\"font-weight: bold;\\\">@Output</strong>&nbsp;and&nbsp;<strong style=\\\"font-weight: bold;\\\">EventEmitter</strong>. Both are parts of the&nbsp;<strong style=\\\"font-weight: bold;\\\">@angular/core</strong>.</p><p pid=\\\"2\\\" style=\\\"margin: 5px 0px 15px; padding-top: 0px; color: rgb(34, 38, 53); font-family: Cambria, serif; font-size: 19px;\\\"><br></p><p pid=\\\"4\\\" style=\\\"margin: 5px 0px 15px; padding-top: 0px; color: rgb(34, 38, 53); font-family: Cambria, serif; font-size: 19px;\\\">Confused by the jargon? Let's simplify it together. Consider the&nbsp;<strong style=\\\"font-weight: bold;\\\">AppChildComponent</strong>&nbsp;as shown below:Here we're using&nbsp;<strong style=\\\"font-weight: bold;\\\">AppChildCopmponent</strong>&nbsp;inside&nbsp;<strong style=\\\"font-weight: bold;\\\">AppComponent</strong>, thereby creating a parent/child kind of relationship, in which&nbsp;<strong style=\\\"font-weight: bold;\\\">AppComponent</strong>&nbsp;is the parent and&nbsp;<strong style=\\\"font-weight: bold;\\\">AppChildComponent</strong>&nbsp;is the child. When we run the application with a button click, you'll see this message in the browser console:</p>",
+      "isBestAnswered": null,
+      "id": 14
+    }
+  ]
+}

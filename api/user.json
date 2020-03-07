@@ -1,0 +1,34 @@
+{
+    "user": [
+        {
+          "id": 1,
+          "username": "mark",
+          "email": "mark@gmail.com",
+          "password": "mark123",
+          "mobile": 124561325,
+          "registered": true,
+          "isActive": true,
+          "type": "user"
+        },
+        {
+          "id": 2,
+          "username": "steven",
+          "email": "steven@gmail.com",
+          "password": "steven123",
+          "mobile": 126669993,
+          "registered": true,
+          "isActive": true,
+          "type": "user"
+        },
+        {
+          "id": 3,
+          "username": "admin",
+          "email": "admin@gmail.com",
+          "password": "admin123",
+          "mobile": 125559991,
+          "registered": true,
+          "isActive": true,
+          "type": "admin"
+        }
+      ]
+}
