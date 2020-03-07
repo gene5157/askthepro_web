@@ -16,7 +16,7 @@ Question and answer web project with angular 7
 
 2. Install the git installer after download completed.
 
-3. Next, go to https://nodejs.org/en/download/ and download nodeJS.
+3. Next, go to [nodeJS](https://nodejs.org/en/download/) and download nodeJS.
 
 4. Download the `LTS version` of nodejs
 
@@ -44,17 +44,54 @@ Question and answer web project with angular 7
 
 16. After it done, in command prompt type in > `cd askthepro_web`
 
-17. In command prompt, type in > `npm install` (This will install all dependencies package that required to run the project and it may take some times)
+17. In command prompt, type in ` nvm install 10.8.0 `, wait until it finish then type in > ` nvm use 10.8.0`
 
-18. After it complete, in command prompt type in >` ng serve --o `  to start run the project.  his may take some time in between 2 to 5 minutes.
+18. In command prompt, type in > `npm install` (This will install all dependencies package that required to run the project and it may take some times)
 
-12. Open a new command prompt and type in > `cd documents\askthepro_web` 
+19. After it complete, in command prompt type in >` ng serve --o `  to start run the project.  his may take some time in between 2 to 5 minutes.
 
-13. In the command prompt, type in > `npm run api`   to start the json server.
+20. Open a new command prompt and type in > `cd documents\askthepro_web` 
 
-14. Open a new command prompt again and type in > `cd documents\askthepro_web`  first then type in > `npm run start-auth`  to start the server.
+21. In the command prompt, type in > `npm run api`   to start the json server.
 
-15. Now after all process is started and run, open chrome browser and type in  `localhost:4200 `.
+22. Open a new command prompt again and type in > `cd documents\askthepro_web`  first then type in > `npm run start-auth`  to start the server.
+
+23. Now after all process is started and run, open chrome browser and type in  `localhost:4200 `.
+
+24. Askthepro website now in live. Enjoys.
+
+Instruction to build the project from zip 
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Go to [nodeJS](https://nodejs.org/en/download/) and download nodeJS.
+
+2. Download the `LTS version` of nodejs
+
+3. Install the nodeJS installer you have just downloaded. 
+
+4. Download the project zip file and extract it to Documents.
+
+5. After nodejs is installed open the `Command prompt`.
+
+6. In command prompt, type in> ` npm install -g @angular/cli@7.3.9 ` and wait until it completed install Angular CLI. 
+
+7. Please make sure you has already extract the project zip file in Documents.
+
+8. Now in command prompt, type in ` cd/documents/askthepro `.
+
+9. In command prompt, type in > ` nvm install 10.8.0 `, wait until it finish then type in > ` nvm use 10.8.0`.
+
+10. Next, in command prompt type in ` npm install ` and wait until it finish. This may took some time, please be patient.
+
+11. Next, in command prompt type in ` ng serve --o ` to start serve the project. This may take some time in between 2 to 5 minutes.
+
+12. Open a new command prompt and type in ` cd documents\askthepro `.
+
+13. In the command prompt, type in ` npm run api ` to start the json server.
+
+14. Open a new command prompt again and type in `cd documents\askthepro` first then type in ` npm run start-auth ` to start the server.
+
+15. Now after all process is started and run, open chrome browser and type in ` localhost:4200 `.
 
 16. Askthepro website now in live. Enjoys.
 
