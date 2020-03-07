@@ -69,7 +69,7 @@ Instruction to build the project from zip
 
 3. Install the nodeJS installer you have just downloaded. 
 
-4. Download the project zip file and extract it to Documents.
+4. Download the project zip file from [google drive](https://drive.google.com/drive/folders/1-uko9dTSs_dGu2hPm1z0rsGF7V4goXi7?usp=sharing) and extract it to Documents.
 
 5. After nodejs is installed open the `Command prompt`.
 
