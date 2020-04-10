@@ -20,7 +20,8 @@ const routes: Routes = [
   },//set default url start with /home
   {
     path:'home',
-    component: HomeComponent
+    component: HomeComponent,
+    data: {animation: 'HomePage'}
   },
   {
     path:'login',
@@ -41,7 +42,7 @@ const routes: Routes = [
   },
   //manage admin dashboard
   {
-    path:'admin-dashboard',
+    path:'admin_dashboard',
     canActivate: [RoleGuardService], 
     data: { 
       expectedRole: 'admin'
@@ -84,7 +85,8 @@ const routes: Routes = [
   //end manage user
   {
     path: 'question',
-    component: QuestionFrameComponent
+    component: QuestionFrameComponent,
+    data: {animation: 'TitlePage'}
   },
   {
     path: 'category/:category_type/:category_id/questions',

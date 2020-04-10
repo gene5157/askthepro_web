@@ -27,75 +27,58 @@
       <form class="form-horizontal" action="" method="POST">
         <fieldset class="register-form">
           <block-ui>
-          <div id="legend">
-            <legend class="">Register</legend>
-          </div>
-          <div class="control-group">
-            <!-- Username -->
-            <label class="control-label" for="username">Username</label>
-            <div class="controls">
-              <input type="text" id="username" name="username" [(ngModel)]="registerUser.username" placeholder="" class="input-xlarge">
-              <div *ngIf="registerUser.usernameInvalid" class="col-xl-7 col-lg-7">
-                <span class="warning" style="color:#e60000; font-size: 15px;">
-                  * Username is required
-                </span>
-              </div>
-              <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+            <div id="legend">
+              <legend class="">Register</legend>
             </div>
+            <form [formGroup]="regForm" (ngSubmit)="register(regForm.value)" class="text-center border border-light p-5">
+
+              <!-- Username -->
+              <div class="md-form">
+                <input type="text" id="username" name="username" formControlName="username" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" required>
+                <label for="username" class="active">Username</label>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+              </div>
+              <!-- email -->
+              <div class="md-form">
+                <input type="email" id="email" name="email" class="form-control mb-4" formControlName="email"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required >
+                <label for="email" class="active">Email</label>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+              <!-- Password -->
+              <div class="md-form">
+                <input type="password" id="password" name="password" formControlName="password" class="form-control mb-4"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required>
+                <label for="password" class="active">Password</label>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+              </div>
+              <div class="md-form">
+                <input type="password" id="password_confirm" name="password_confirm" formControlName="password_confirm" class="form-control mb-4"
+                  [ngClass]="{ 'is-invalid': submitted && f.password_confirm.errors }" required>
+                <label for="password_confirm" class="active">Password (Confirm)</label>
+                <div *ngIf="submitted && f.password_confirm.errors" class="invalid-feedback">
+                  <div *ngIf="f.password_confirm.errors.required">Password is required</div>
+                  <div *ngIf="f.password_confirm.errors.mustMatch">Passwords must match</div>
+                </div>
+              </div>
+              <button class="btn btn-success" id="register" >Register</button>
+              <!-- <button class="btn btn-info btn-block" type="submit">Post Question</button> -->
             
-          </div>
-
-          <div class="control-group">
-            <!-- E-mail -->
-            <label class="control-label" for="email">E-mail</label>
-            <div class="controls">
-              <input type="text" id="email" name="email" [(ngModel)]="registerUser.email" placeholder="" class="input-xlarge">
-              <div *ngIf="registerUser.emailInvalid" class="col-xl-7 col-lg-7">
-                <span class="warning" style="color:#e60000; font-size: 15px;">
-                  * Email is required
-                </span>
-              </div>
-              <p class="help-block">Please provide your E-mail</p>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <!-- Password-->
-            <label class="control-label" for="password">Password</label>
-            <div class="controls">
-              <input type="password" id="password" name="password" [(ngModel)]="registerUser.password" placeholder="" class="input-xlarge">
-              <div *ngIf="registerUser.pwdInvalid" class="col-xl-7 col-lg-7">
-                <span class="warning" style="color:#e60000; font-size: 15px;">
-                  * Password is required
-                </span>
-              </div>
-              <p class="help-block">Password should be at least 4 characters</p>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <!-- Password -->
-            <label class="control-label" for="password_confirm">Password (Confirm)</label>
-            <div class="controls">
-              <input type="password" id="password_confirm" [(ngModel)]="registerUser.password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
-              <div *ngIf="registerUser.pwdMatchInvalid" class="col-xl-7 col-lg-7">
-                <span class="warning" style="color:#e60000; font-size: 15px;">
-                  * Password Not Match!
-                </span>
-              </div>
-              <p class="help-block">Please confirm password</p>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <!-- Button -->
-            <div class="controls">
-              <button class="btn btn-success" id="register" (click)="register()">Register</button>
-            </div>
-          </div>
+            </form>
           </block-ui>
         </fieldset>
       </form>
     </ng-container>
   </div>
 </div>
+
+

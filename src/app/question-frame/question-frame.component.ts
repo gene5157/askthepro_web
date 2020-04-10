@@ -28,7 +28,7 @@ export class QuestionFrameComponent implements OnInit {
   ngOnInit() {
     //console.log(this.questions)
     //console.log(this.teams$)
-    this.getData2()
+    // this.getData2()
     this.getCategory()
 
   }
@@ -44,9 +44,13 @@ export class QuestionFrameComponent implements OnInit {
     })
 
   }
+  removeSpacing(text:String){
+   text = text.replace(/\ /,"_")
+    return text
+  }
   getCategory() {
-    this.http.get('/api/categories').subscribe(result => {
-      this.categoryData = result
+    this.queryService.getCategory().subscribe(result => {
+      this.categoryData = result['categorys']
       console.log(this.categoryData)
     })
 

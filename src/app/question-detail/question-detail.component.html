@@ -42,22 +42,26 @@
       <h6 class="text-muted mb-2">{{questionData.summary}}</h6>
     </mdb-card-title>
     <mdb-card-text [innerHtml]="sanitizer.bypassSecurityTrustHtml(questionData.description)">
-      
+
     </mdb-card-text>
-    <div class="row float-right" style="text-align: center;" *ngIf="userData != undefined">
-      <span class="col-12">
-        Asked by
-      </span>
-      <div class="col-12">
-        <mdb-icon far icon="user-circle"></mdb-icon>
-        {{userData.username}}
+    <br />
+    <div class="row">
+      <div class="col-4" style="margin-top: 30px;">
+        {{questionData.answers?.answers?.length}} Answer
       </div>
-      <div class="col-12">
-        {{convertTime(questionData.date_post)}}
+      <div class="row float-right col-8" style="text-align: right;">
+        <span class="col-12">
+          Asked by
+        </span>
+        <div class="col-12">
+          <mdb-icon far icon="user-circle"></mdb-icon>
+          {{questionData.username}}
+        </div>
+        <div class="col-12">
+          {{convertTime(questionData.date_post)}}
+        </div>
       </div>
-    </div>
-    <div>
-      {{questionData.answers?.length}} Answer
+
     </div>
     <!-- <mdb-card >
         <mdb-card-body>
@@ -65,20 +69,20 @@
         </mdb-card-body>
       </mdb-card> -->
   </mdb-card-body>
-  <div *ngIf="questionData.answers?.length == 0">
+  <div *ngIf="questionData.answers?.answers?.length == 0">
     <span>
       No answer provided yet...
     </span>
   </div>
   <!-- best asn -->
-  <mdb-card *ngIf="bestAnswer.length != 0 ">
+  <mdb-card *ngIf="isBestAnswer">
     <mdb-card-body>
       <span class="badge badge-success">Best Answer</span>
       <p>{{bestAnswer.title}}
       </p>
       <blockquote class="blockquote mb-0">
         <!-- <p>{{ans.title}}</p> -->
-        <footer class="blockquote-footer" > {{bestAnswer.description}}</footer>
+        <footer class="blockquote-footer"> {{bestAnswer.description}}</footer>
       </blockquote>
       <div class="float-right acard">
         <mdb-card>
@@ -87,7 +91,7 @@
             <div class="row">
               <span class="col-12"> Answered {{convertTime(bestAnswer.date_post)}}</span>
               <div class="col-12">
-                By {{bestAnswer.user?.username}}
+                By {{bestAnswer.username}}
               </div>
               <div class="col-12">
               </div>
@@ -97,15 +101,21 @@
       </div>
     </mdb-card-body>
   </mdb-card>
+
   <mdb-card *ngFor="let ans of newAnswerList">
     <mdb-card-body>
       <div class="row">
         <div class="col-1" *ngIf="isUserPost">
           <div class="float-left">
-            <span class="badge badge-pill cyan" style="cursor:pointer;" (click)="selectedBA(ans)" title="Select as Best Answer">
+            <span class="badge badge-pill cyan" style="cursor:pointer;" (click)="selectedBA(ans)"
+              title="Select as Best Answer">
               <i class="far fa-thumbs-up fa-2x" aria-hidden="true"></i>
             </span>
             <span style="font-size:10px;">Select as Best Answer</span>
+          </div>
+          <br />
+          <div *ngIf="this.current_user == ans.userId">
+            <button class="btn btn-warning btn-sm" (click)="editAns(ans)"> Edit </button>
           </div>
         </div>
         <div class="col-11">
@@ -121,7 +131,7 @@
                 <div class="row">
                   <span class="col-12"> Answered {{convertTime(ans.date_post)}}</span>
                   <div class="col-12">
-                    By {{ans.user?.username}}
+                    By {{ans.username}}
                   </div>
                   <div class="col-12">
 
@@ -145,11 +155,77 @@
 <mdb-card *ngIf="postAnswer == true">
   <mdb-card-body>
     <p> Your Answer</p>
-    <div class="md-form">
+    <!-- <div class="md-form">
       <input type="text" id="title" name="title" [(ngModel)]="submitAnswer.title" class="form-control">
       <label for="title" class="active">Title</label>
     </div>
     <div [innerHTML]="submitAnswer.description" class="summernote" id="Description"></div>
-    <button class="btn btn-sm btn-indigo" (click)="send()"> Submit Answer</button>
+    <button class="btn btn-sm btn-indigo" (click)="send()"> Submit Answer</button> -->
+    <form [formGroup]="ansForm" (ngSubmit)="send(ansForm.value)">
+      <div class="md-form">
+        <input type="text" id="title" name="title" formControlName="ansTitle" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.ansTitle.errors }" required>
+        <label for="title" class="active">Title</label>
+        <div *ngIf="submitted && f.ansTitle.errors" class="invalid-feedback">
+          <div *ngIf="f.ansTitle.errors.required">Title is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <div [innerHTML]="submitAnswer.description" class="summernote" id="Description" required></div>
+        <div *ngIf="descInvalid" class="col-xl-7 col-lg-7">
+          <span class="warning" style="color:#e60000; font-size: 15px;">
+            Description cannot be empty!
+          </span>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-indigo"> Submit Answer</button>
+    </form>
   </mdb-card-body>
 </mdb-card>
+
+<div class="modal fade" id="editAns" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #33b5e5;">
+        <h5 class="modal-title" style="color:#fff">Edit Answer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" class="text-center border border-light p-5">
+          <p class="h4 mb-4" >Edit Your Answer</p>
+          <!-- title -->
+          <div class="md-form">
+            <input type="text" id="title" name="title" formControlName="title" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && e.title.errors }" required>
+            <label for="title" class="active">Title</label>
+            <div *ngIf="submitted && e.title.errors" class="invalid-feedback">
+              <div *ngIf="e.title.errors.required">Title is required</div>
+            </div>
+          </div>
+          <!-- description -->
+          <div class="form-group">
+            <label for="description_edt">Description</label>
+            <div [innerHTML]="ques_description" class="summernote" id="description_edt"></div>
+
+            <div *ngIf="descInvalid" class="col-xl-7 col-lg-7">
+              <span class="warning" style="color:#e60000; font-size: 15px;">
+                Description cannot be empty!
+              </span>
+            </div>
+          </div>
+          <!-- <button class="btn btn-info btn-block" type="submit">Post Question</button> -->
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updAns(editForm.value)">Submit</button>
+    </div>
+    </div>
+  </div>
+</div>

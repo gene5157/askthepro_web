@@ -47,6 +47,15 @@
       "isActive": true,
       "role": "user",
       "id": 5
+    },
+    {
+      "username": "john123",
+      "email": "john123@gmail.com",
+      "password": "sha256$6abb1377$1$13768a2a555502638e2304e86e2e9c18e43db962188812e20e3e38e5251e604b",
+      "registered": true,
+      "isActive": true,
+      "role": "user",
+      "id": 6
     }
   ],
   "users": [
@@ -452,7 +461,7 @@
         "email": "admin@gmail.com"
       },
       "description": "To use the mock server, import your spec into SwaggerHub and enable \"API Auto Mocking\". Mock responses can be JSON, YAML and XML, and are generated based on your response schemas and the example, default and enum values defined in the schemas",
-      "isBestAnswered": true
+      "isBestAnswered": false
     },
     {
       "id": 4,
@@ -465,7 +474,7 @@
         "email": "steven@gmail.com"
       },
       "description": "The mock server will return a dynamic response based on the OpenAPI spec. If examples are provided in the spec, prism will return them, if not it will generate dummy data based on the spec.",
-      "isBestAnswered": false
+      "isBestAnswered": true
     },
     {
       "id": 5,
@@ -595,6 +604,19 @@
       "description": "<p pid=\\\"2\\\" style=\\\"margin: 5px 0px 15px; padding-top: 0px; color: rgb(34, 38, 53); font-family: Cambria, serif; font-size: 19px;\\\">In Angular, a component can emit an event using&nbsp;<strong style=\\\"font-weight: bold;\\\">@Output</strong>&nbsp;and&nbsp;<strong style=\\\"font-weight: bold;\\\">EventEmitter</strong>. Both are parts of the&nbsp;<strong style=\\\"font-weight: bold;\\\">@angular/core</strong>.</p><p pid=\\\"2\\\" style=\\\"margin: 5px 0px 15px; padding-top: 0px; color: rgb(34, 38, 53); font-family: Cambria, serif; font-size: 19px;\\\"><br></p><p pid=\\\"4\\\" style=\\\"margin: 5px 0px 15px; padding-top: 0px; color: rgb(34, 38, 53); font-family: Cambria, serif; font-size: 19px;\\\">Confused by the jargon? Let's simplify it together. Consider the&nbsp;<strong style=\\\"font-weight: bold;\\\">AppChildComponent</strong>&nbsp;as shown below:Here we're using&nbsp;<strong style=\\\"font-weight: bold;\\\">AppChildCopmponent</strong>&nbsp;inside&nbsp;<strong style=\\\"font-weight: bold;\\\">AppComponent</strong>, thereby creating a parent/child kind of relationship, in which&nbsp;<strong style=\\\"font-weight: bold;\\\">AppComponent</strong>&nbsp;is the parent and&nbsp;<strong style=\\\"font-weight: bold;\\\">AppChildComponent</strong>&nbsp;is the child. When we run the application with a button click, you'll see this message in the browser console:</p>",
       "isBestAnswered": null,
       "id": 14
+    },
+    {
+      "title": "test",
+      "date_post": "2020-03-10T04:35:33.493Z",
+      "userId": 1,
+      "questionId": 1,
+      "user": {
+        "username": "mark",
+        "email": "mark@gmail.com"
+      },
+      "description": "<p>demo <span style=\\\"background-color: rgb(255, 255, 0);\\\">test</span></p>",
+      "isBestAnswered": null,
+      "id": 15
     }
   ]
 }

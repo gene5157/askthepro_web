@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 import { Question,Answer, Categories, Tag } from './question';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiDataService {
-
+  baseUrl = 'http://localhost/askthepro/api';
+  baseUrl2 = 'http://localhost/askthepro/includes';
+  questions: Question[];
+  temp:any;
   constructor(private http: HttpClient) { }
 
   // Http Options
@@ -20,6 +23,7 @@ export class ApiDataService {
   
   // Handle API errors
   handleError(error: HttpErrorResponse) {
+    console.log(error)
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -48,12 +52,72 @@ export class ApiDataService {
   // get category
   getCategory(): Observable<Categories> {
     return this.http
-      .get<Categories>('api/categories')
+      .get<Categories>(`${this.baseUrl}/phpProcess?class=api&function=getCategorys`)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
+  getAllQuest(): Observable<Question> {
+    return this.http
+      .get<Question>(`${this.baseUrl}/phpProcess?class=api&function=getAllQuestions`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getQuesOnAny(where_name,where_id): Observable<Question> {
+    return this.http
+      .get<Question>(`${this.baseUrl}/phpProcess?class=api&function=questionsOnAny&parameter=${where_name}&parameter2=${where_id}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  getQuesCategory(user_id): Observable<Question> {
+    return this.http
+      .get<Question>(`${this.baseUrl}/phpProcess?class=api&function=getCategoryOnAny&parameter=${user_id}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getQuesAns(id): Observable<Question> {
+    return this.http
+      .get<Question>(`${this.baseUrl}/phpProcess?class=api&function=getQuestion&parameter=${id}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getPoint(userId) {
+    return this.http
+      .get(`${this.baseUrl}/phpProcess?class=api&function=getPointOnAny&parameter=${userId}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  search(keyvalue){
+    return this.http
+      .get(`${this.baseUrl}/phpProcess?class=api&function=search&title=${keyvalue}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  search2(keyword): Observable<Question> {
+    return this.http
+    .get<Question>(`${this.baseUrl}/phpProcess?class=api&function=search&title=${keyword}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
   // get tag
   getTag(): Observable<Tag> {
     return this.http
@@ -63,15 +127,89 @@ export class ApiDataService {
         catchError(this.handleError)
       )
   }
+
   //create question
-  createQuestions(item): Observable<Question> {
-    return this.http
-      .post<Question>('api/questions',JSON.stringify(item), this.httpOptions)
+  createQuestion(funct_name,question: Question): Observable<Question> {
+    return this.http.post<Question>(`${this.baseUrl}/phpProcess?class=api&function=${funct_name}`, { data: question })
       .pipe(
         retry(2),
-        catchError(this.handleError)
-      )
+      catchError(this.handleError));
   }
+
+  //update question
+  updQuestion(question: Question): Observable<Question> {
+    return this.http.post<Question>(`${this.baseUrl}/phpProcess?class=api&function=updQuestion`, { data: question })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+  
+  //del question
+  delQuestion(id): Observable<Question> {
+    return this.http.put<Question>(`${this.baseUrl}/phpProcess?class=api&function=delQuestion`, { data:id })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+
+  //create answer
+  createAns(funct_name,ans): Observable<Answer> {
+    return this.http.post<Answer>(`${this.baseUrl}/phpProcess?class=api&function=${funct_name}`, { data: ans })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+
+  //update answer
+  updAns(answer): Observable<Answer> {
+    return this.http.post<Answer>(`${this.baseUrl}/phpProcess?class=api&function=updAnswer`, { data: answer })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+
+  //del answer
+  delAns(id): Observable<Answer> {
+    return this.http.put<Answer>(`${this.baseUrl}/phpProcess?class=api&function=delAnswer`, { data:id })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+
+  //update answer
+  updBestAns(answer): Observable<Answer> {
+    return this.http.put<Answer>(`${this.baseUrl}/phpProcess?class=api&function=updBestAns`, { data: answer })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+
+   //create point
+   createPoint(point) {
+    return this.http.post(`${this.baseUrl}/phpProcess?class=api&function=addPoint`, { data: point })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+
+  //update point
+  updPoint(point) {
+    return this.http.put(`${this.baseUrl}/phpProcess?class=api&function=updPoint`, { data: point })
+      .pipe(
+        retry(2),
+      catchError(this.handleError));
+  }
+
+
+
+  // createQuestions(item): Observable<Question> {
+  //   return this.http
+  //     .post<Question>('api/questions',JSON.stringify(item), this.httpOptions)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
   //submit answer for particular question
   createAnswer(item): Observable<Answer> {
     console.log(item)
@@ -93,6 +231,16 @@ export class ApiDataService {
         retry(2),
         catchError(this.handleError)
       )
+  }
+
+  getAll(functionName): Observable<Question[]> {
+    return this.http.get(`${this.baseUrl}/phpProcess?class=api&function=`+functionName).pipe(
+      map((res) => {
+        console.log(res)
+        this.questions = res['questions'];
+        return this.questions;
+      }),
+      catchError(this.handleError));
   }
   
 

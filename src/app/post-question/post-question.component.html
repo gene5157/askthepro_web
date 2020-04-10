@@ -2,64 +2,71 @@
   <div class="body">
     <div class="row">
       <div class="col-12">
-        <!-- title: string; 
-    date_post: Date; 
-    user_id: string;
-    summary: string;
-    description: string; 
-    category: string;
-    categories_id: string;
-    isAnswered: boolean;
-    answer:Answer[]; -->
+       
         <!-- Default form contact -->
-        <form class="text-center border border-light p-5" action="#!">
+        <form [formGroup]="questionForm" (ngSubmit)="postQuestion(questionForm.value)"class="text-center border border-light p-5" action="#!">
 
           <p class="h4 mb-4">Post Your Question</p>
-
+          
+          <!-- <div class="form-group">
+            <button class="btn btn-primary">Register</button>
+        </div> -->
           <!-- title -->
-          <!-- <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"> -->
           <div class="md-form">
-            <input type="text" id="title" name="title" [(ngModel)]="post.title" class="form-control">
+            <input type="text" id="title" name="title" 
+            formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" required>
+            <label for="title" class="active">Title</label>
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+              <div *ngIf="f.title.errors.required">Title is required</div>
+          </div>
+          </div>
+          <!-- <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"> -->
+          <!-- <div class="md-form">
+            <input type="text" id="title" name="title" [(ngModel)]="post.title" 
+            class="form-control" >
             <label for="title" class="active">Title</label>
             <div *ngIf="valid.titleInvalid" class="col-xl-7 col-lg-7">
               <span class="warning" style="color:#e60000; font-size: 15px;">
                 Title cannot be empty!
               </span>
             </div>
-          </div>
+          </div> -->
           <!-- date -->
           <div class="md-form">
-            <input type="text" id="date" name="date" class="form-control mb-4" [(ngModel)]="current_date"
-              placeholder="date" disabled>
+            <input type="text" id="date" name="date" class="form-control mb-4" formControlName="current_date"
+              placeholder="date" >
             <label for="date" class="active">Date Post</label>
           </div>
           <!-- summary -->
           <div class="md-form">
-            <input type="text" id="summary" name="summary" [(ngModel)]="post.summary" class="form-control mb-4">
+            <input type="text" id="summary" name="summary" formControlName="summary"
+             class="form-control mb-4" [ngClass]="{ 'is-invalid': submitted && f.summary.errors }" required>
             <label for="summary" class="active">Summary</label>
-            <div *ngIf="valid.summaryInvalid" class="col-xl-7 col-lg-7">
-              <span class="warning" style="color:#e60000; font-size: 15px;">
-                Please enter summary!
-              </span>
-            </div>
+            <div *ngIf="submitted && f.summary.errors" class="invalid-feedback">
+              <div *ngIf="f.summary.errors.required">Summary is required</div>
           </div>
+          </div>
+          <div class="form-group">
           <!-- Category -->
-          <label>Category</label>
-          <select class="browser-default custom-select mb-4" name="category" placeholder="Choose a category"
-            [(ngModel)]="post.categories_id">
-            <option value="" selected="selected">Choose a category</option>
-            <option value="{{category.id}}" *ngFor="let category of categories"> {{category.name}} </option>
+          <label for="category">Category</label>
+          <br />
+          <select class="form-control" id="category" name="category"
+          formControlName="category" required>
+            <option value="" selected>Choose a category</option>
+            <option [ngValue]="category.id" *ngFor="let category of categories"> {{category.name}} </option>
           </select>
           <div *ngIf="valid.categoryInvalid" class="col-xl-7 col-lg-7">
             <span class="warning" style="color:#e60000; font-size: 15px;">
-              Please select a category!
+              Please select a Category!
             </span>
           </div>
+          <!-- <div *ngIf="submitted && valid.categoryInvalid == true" class="invalid-feedback">
+            <div *ngIf="valid.categoryInvalid == true">Please choose a Category</div>
+        </div> -->
+        </div>
           <!-- tag -->
-          <div class="md-form">
-            <!-- <input type="text" id="tag" name="tag"  class="form-control mb-4"> -->
+          <!-- <div class="md-form">
             <label for="tag" class="active">Tag</label>
-            <!-- <div class="chips chips-placeholder"></div> -->
             <input type="text" data-role="tagsinput" placeholder="Add tags">
           </div>
           <div class="md-form">
@@ -75,14 +82,14 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
           <!-- description -->
           <div class="form-group">
+            <label for="description">Description</label>
             <div [innerHTML]="post.description" class="summernote" id="description"></div>
-            <!-- <textarea class="form-control rounded-0" name="description" id="description" rows="3"
-              placeholder="Description" [(ngModel)]="post.description"></textarea> -->
+            
             <div *ngIf="valid.descInvalid" class="col-xl-7 col-lg-7">
               <span class="warning" style="color:#e60000; font-size: 15px;">
                 Description cannot be empty!
@@ -98,10 +105,53 @@
         </div> -->
 
           <!-- Send button -->
-          <button class="btn btn-info btn-block" (click)="postQuestion()" type="submit">Post Question</button>
+          <button class="btn btn-info btn-block" type="submit">Post Question</button>
 
         </form>
         <!-- Default form contact -->
+        <!-- <form [formGroup]="questionForm" (ngSubmit)="postQuestion()">
+          <div class="form-group">
+              <label>Title</label>
+              <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+              <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstName.errors.required">First Name is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+              <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label>Email</label>
+              <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label>Password</label>
+              <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+              <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                  <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                  <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <button class="btn btn-primary">Register</button>
+          </div>
+      </form> -->
       </div>
     </div>
   </div>

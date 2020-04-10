@@ -55,24 +55,26 @@ export class QuestionListComponent implements OnInit {
   }
 
   loadDataWithFilter(option) {
-    let temp = this.data;
+    let temp = this.tempData;
+    console.log(temp)
     this.data = [];
     if (this.filterData != undefined) {
       this.filterData = []
     }
     console.log("filter with "+option)
     for (var i = 0; i < temp.length; i++) {
+      //console.log(temp[i].date_post)
       var date = parseInt(this.countDate(temp[i].date_post))
       if (option == "recent") {
         if (date < 20) {
           this.filterData.push(temp[i])
         }
       } else if (option == "no_answer") {
-        if (temp[i].isAnswer == false || temp[i].answers.length == 0) {
+        if (temp[i].isAnswer == false ) {
           this.filterData.push(temp[i])
         }
       } else if (option == "both") {
-        if (date < 20 && temp[i].answer.length == 0) {
+        if (date < 20 && temp[i].isAnswer == false) {
           this.filterData.push(temp[i])
         }
       }
@@ -90,14 +92,23 @@ export class QuestionListComponent implements OnInit {
     console.log(this.filterData)
   }
 
+  reset(){
+    if(this.filterType.recent == false && this.filterType.noAns == false){
+      this.data = this.tempData
+      this.noFound = false
+    } 
+    this.filter = false
+   
+  }
+
   getInnerHtml(html) {
     console.log(html)
     return document.getElementById("description").innerHTML = html;
   }
 
   getCategory() {
-    this.queryService.getAllQuestions().subscribe(result=>{
-      this.questionData = result
+    this.queryService.getQuesOnAny('categories_id',this.category_id).subscribe(result=>{
+      this.questionData = result['question']
       console.log(this.questionData)
       this.data = this.questionData.filter(q => {
         if (q.categories_id == this.category_id) {

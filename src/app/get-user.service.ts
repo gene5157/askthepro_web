@@ -22,6 +22,7 @@ export class GetUserService {
   //   return of(this.USERS);
 
   // }
+  baseUrl = 'http://localhost/askthepro/api';
 
 
 
@@ -49,7 +50,8 @@ export class GetUserService {
     return throwError(
       'Something bad happened; please try again later.');
   };
-  subUser(username: string, password: string) {
+  
+  // subUser(username: string, password: string) {
     // this.getList().subscribe(res => {
     //   var tempUser;
     //   tempUser = res
@@ -58,32 +60,45 @@ export class GetUserService {
     //     )
     //     return realUser
     // })
-  }
+  // }
 
   hashService(value) {
     return this.http.post('http://localhost:3002/pass-hash',
       { "password": value })
   }
 
+  verifyToken(value) {
+    return this.http.post('http://localhost:3002/verify',
+      { "token": value })
+  }
+
   public isMatchFound(email) {
     return this.http
-      .get<User>('api/user/?email_like=' + email)
+      // .get<User>('api/user/?email_like=' + email)
+      .get<User>(`${this.baseUrl}/phpProcess?class=api&function=getUser&parameter=` + email)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-
-  registerUser(item): Observable<User> {
-    console.log(item)
-    return this.http
-      .post<User>('api/user', JSON.stringify(item), this.httpOptions)
+  registerUser(regItem) {
+    return this.http.post(`${this.baseUrl}/phpProcess?class=api&function=register`, { data: regItem })
       .pipe(
         retry(2),
-        catchError(this.handleError)
-      )
+      catchError(this.handleError));
   }
+
+  // registerUser(item): Observable<User> {
+  //   console.log(item)
+  //   return this.http
+  //     // .post<User>('api/user', JSON.stringify(item), this.httpOptions)
+  //     .post(`${this.baseUrl}/phpProcess?class=api&function=addPoint`, { data: item })
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
 
   // showUsername(){
   //    this.retriveUser().subscribe(result=>{
@@ -104,7 +119,17 @@ export class GetUserService {
   retriveUser() {
     var email = this.authService.getUserInfoFromToken()
     return this.http
-      .get<User>('api/user?email=' + email)
+      .get<User>(`${this.baseUrl}/phpProcess?class=api&function=getUser&parameter=` + email)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+
+  }
+
+  checkUser(field_name,field_id) {
+    return this.http
+      .get<User>(`${this.baseUrl}/phpProcess?class=api&function=getUserOnAny&parameter=${field_name}&parameter2=${field_id}`)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -113,13 +138,13 @@ export class GetUserService {
   }
 
   // login check
-  loginVerified(email, password): Observable<User> {
-    return this.http
-      .get<User>('api/user?email=' + email + '&password=' + password)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+  // loginVerified(email, password): Observable<User> {
+  //   return this.http
+  //     .get<User>('api/user?email=' + email + '&password=' + password)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
 
 }

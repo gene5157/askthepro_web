@@ -1,46 +1,98 @@
 <div class="body">
-   
-    <button type="button" [routerLink]="'/post_question'" class="btn btn-cyan waves-effect waves-light float-right">Ask Question</button>
-    <div class="search">
-        <h1> Search for Questions</h1>
-        <form class="form-inline active-cyan-4">
-            <input class="form-control form-control-sm mr-3 w-75" type="text"
-                placeholder="Search based on Question Title" aria-label="Search" id="search" name="keysearch"
-                [(ngModel)]="keysearch">
-            <button (click)="search()">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <span>Search</span>
-            </button>
-        </form>
-        <div class="search_result" id="search_result" style="display:block" *ngIf="searchData != undefined">
-            <div class="list-group active quesList" *ngFor="let question of searchData;let i = index">
-                <a [routerLink]="'/question/'+ question.id" class="list-group-item list-group-item-action ">
-                  <div class="d-flex w-100 justify-content-between">
-              
-                    <h5 class="mb-1">{{i+1}}. {{question.title}}</h5>
-                    <small>Posted {{countDate(question.date_post)}}</small>
-                  </div>
-                  <p class="mb-1">{{question.summary}}</p>
-                  <small>{{question.description}}</small>
-                </a>
-              </div>
-        </div>
-    </div>
-    <br>
-    <h3>Most Recent Question Asked</h3>
-    <div class="row">
-        <div class="col-3 col-md-4" *ngFor="let question of data">
-            <div class="card">
-                <div class="card-body">
-                    <div *ngIf="question?.isAnswer == true">
-                        <span class="badge badge-success float-right">Solved</span>
-                    </div>
-                    <h5 class="card-title"> {{question.title}}</h5>
-                    <p class="card-text"> {{question.desc}}</p>
-                    <a [routerLink]="'/question/'+ question.id" class="btn btn-sm btn-primary">View </a>
-                </div>
+
+  <button type="button" [routerLink]="'/post_question'" class="btn btn-cyan waves-effect waves-light float-right">Ask
+    Question</button>
+  <div class="search">
+    <h1> Search for Questions</h1>
+    <form class="form-inline active-cyan-4">
+      <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search based on Question Title"
+        aria-label="Search" id="search" name="keysearch" [(ngModel)]="keysearch">
+      <button (click)="search()" class="btn btn-elegant btn-sm">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <span>Search</span>
+      </button>
+    </form>
+    <div>
+      <button id="advanceSearch" class="btn blue-gradient btn-sm" (click)="showSearch()">Advance search</button>
+      <ul class="list-group" id="isAdvSearch" style="display: none;">
+        <li class="list-group-item">
+          <div class="form-group form-row">
+            <!-- Category -->
+            <div class="col-6">
+              <label>Choose Category</label>
+              <select class="browser-default custom-select mb-4" name="category" placeholder="Select a category"
+                [(ngModel)]="searchValue.categories_id">
+                <option value="null" selected="selected">Choose a category</option>
+                <option value="{{category.id}}" *ngFor="let category of categoryData"> {{category.name}} </option>
+              </select>
             </div>
-            <br>
-        </div>
+            <div class="col-6">
+
+            </div>
+          </div>
+        </li>
+        <!-- <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Dropdown Example
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu fadeInDropdown">
+                      <li><a href="#">HTML</a></li>
+                      <li><a href="#">CSS</a></li>
+                      <li><a href="#">JavaScript</a></li>
+                    </ul>
+                  </div> -->
+        <li class="list-group-item">
+          <!-- Default checked -->
+          <div class="col-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="recent" [(ngModel)]="searchValue.most_recent"
+                id="defaultChecked2">
+              <label class="custom-control-label" for="defaultChecked2">Most recent</label>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="noAns" [(ngModel)]="searchValue.no_ans"
+              id="defaultChecked3">
+            <label class="custom-control-label" for="defaultChecked3">No Answer</label>
+          </div>
+        </li>
+      </ul>
     </div>
+    <div class="search_result" id="search_result" style="display:none">
+      <div *ngIf="searchData != undefined">
+        <div class="list-group active quesList" *ngFor="let question of searchData;let i = index">
+          <a [routerLink]="'/question/'+ question.id" class="list-group-item list-group-item-action ">
+            <div class="d-flex w-100 justify-content-between">
+
+              <h5 class="mb-1">{{i+1}}. {{question.title}}</h5>
+              <small>Posted {{countDate(question.date_post)}}</small>
+            </div>
+            <p class="mb-1">{{question.summary}}</p>
+            <small>{{question.description}}</small>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="search_result" id="noFound" style="display:none">
+      No Questions found! Please try search again.
+    </div>
+  </div>
+  <br>
+  <h3>Most Recent Question Asked</h3>
+  <div class="row">
+    <div class="col-3 col-md-4" *ngFor="let question of data">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="question?.isAnswer == true">
+            <span class="badge badge-success float-right">Solved</span>
+          </div>
+          <h5 class="card-title"> {{question.title}}</h5>
+          <p class="card-text"> {{question.desc}}</p>
+          <a [routerLink]="'/question/'+ question.id" class="btn btn-sm btn-primary">View </a>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
 </div>

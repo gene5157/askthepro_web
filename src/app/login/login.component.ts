@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
 import { User } from 'user';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,10 +24,21 @@ export class LoginComponent implements OnInit {
     password:"",
     password_confirm:""
   };
-    reg_userdata:User;
-    mySubscription:any;
+  reg_userdata:User;
+  mySubscription:any;
+  regForm: FormGroup;
+  submitted = false;
 
-  constructor(private authService: AuthService, private http: HttpClient, private router: Router, private userApi:GetUserService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private http: HttpClient, private router: Router, private userApi:GetUserService) {
+    this.regForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      password_confirm: ['', Validators.required]
+  }, {
+    validator: this.MustMatch('password', 'password_confirm')
+  });
+
     if(this.authService.isAuthenticated() == true){
       this.router.navigateByUrl('/home')
     }
@@ -43,54 +56,75 @@ export class LoginComponent implements OnInit {
     });
    }
 
-   register(){
+   get f() {
+    return this.regForm.controls
+   }
+
+   register(value){
      let t = this;
-     if(t.registerUser.username == ""){
-      t.registerUser.usernameInvalid = true
-     }else{
-      t.registerUser.usernameInvalid = false
+     console.log(value)
+     var registerData={
+       username: value.username,
+       email: value.email,
+       password: value.password,
+       registered: 1,
+       isActive: 1,
+       role:'user'
      }
+    //  if(t.registerUser.username == ""){
+    //   t.registerUser.usernameInvalid = true
+    //  }else{
+    //   t.registerUser.usernameInvalid = false
+    //  }
 
-     if(t.registerUser.email == ""){
-      t.registerUser.emailInvalid = true
-     }else{
-      t.registerUser.emailInvalid = false
-     }
+    //  if(t.registerUser.email == ""){
+    //   t.registerUser.emailInvalid = true
+    //  }else{
+    //   t.registerUser.emailInvalid = false
+    //  }
 
-     if(t.registerUser.password == ""){
-      t.registerUser.pwdInvalid = true
-     }else{
-      t.registerUser.pdwInvalid = false
-      if(t.registerUser.password !== t.registerUser.password_confirm  ){
-        t.registerUser.pwdMatchInvalid = true
-       }else{
-        t.registerUser.pwdMatchInvalid = false
-       }
-     }
-    
-     if(t.registerUser.usernameInvalid == false &&
-       t.registerUser.emailInvalid == false &&
-       t.registerUser.pdwInvalid == false &&
-       t.registerUser.pwdMatchInvalid == false
-       ){
+    //  if(t.registerUser.password == ""){
+    //   t.registerUser.pwdInvalid = true
+    //  }else{
+    //   t.registerUser.pdwInvalid = false
+    //   if(t.registerUser.password !== t.registerUser.password_confirm  ){
+    //     t.registerUser.pwdMatchInvalid = true
+    //    }else{
+    //     t.registerUser.pwdMatchInvalid = false
+    //    }
+    //  }
+     this.submitted = true;
+     // stop here if form is invalid
+     if (this.regForm.invalid) {
+         return;
+     }else
+    //  if(t.registerUser.usernameInvalid == false &&
+    //    t.registerUser.emailInvalid == false &&
+    //    t.registerUser.pdwInvalid == false &&
+    //    t.registerUser.pwdMatchInvalid == false
+    //    )
+       {
+        console.log(registerData)
         t.blockUI.start('Please wait, Registering your account...');
-        this.userApi.hashService(t.registerUser.password).subscribe(result=>{
+        this.userApi.hashService(registerData.password).subscribe(result=>{
         console.log(result)
-        t.reg_userdata.username = t.registerUser.username
-        t.reg_userdata.email = t.registerUser.email
-        //t.reg_userdata.password = t.registerUser.password
-        t.reg_userdata.password = result["hashedPassword2"]
-        t.reg_userdata.registered = true
-        t.reg_userdata.isActive = true
-        t.reg_userdata.role = "user"
-        console.log(t.reg_userdata)
-        t.userApi.isMatchFound(t.reg_userdata.email).subscribe(res => {
+        // t.reg_userdata.username = t.registerUser.username
+        // t.reg_userdata.email = t.registerUser.email
+        // //t.reg_userdata.password = t.registerUser.password
+        // t.reg_userdata.password = result["hashedPassword2"]
+        // t.reg_userdata.registered = true
+        // t.reg_userdata.isActive = true
+        // t.reg_userdata.role = "user"
+        // console.log(t.reg_userdata)
+        console.log(registerData)
+        registerData.password = result["hashedPassword2"]
+        t.userApi.isMatchFound(registerData.email).subscribe(res => {
           console.log(res['length'])
           if(res['length'] != 0){
             t.blockUI.stop();
-            Swal.fire("Error","This Email already registered! Please enter another email.","error")
+            Swal.fire("Error","This Email already registered! Please enter sign up with another email.","error")
           }else {
-        this.userApi.registerUser(t.reg_userdata).subscribe((response) => {
+        this.userApi.registerUser(registerData).subscribe((response) => {
           console.log(response)
           t.blockUI.stop();
           Swal.fire("Success","Account registered! Proceed to login.","success").then(()=>{
@@ -113,7 +147,7 @@ export class LoginComponent implements OnInit {
     var pwdCheck = this.password
     if(emailCheck != undefined && pwdCheck != undefined){
       this.authService.userLogin(emailCheck,pwdCheck).subscribe(res => {
-        // console.log(res)
+         console.log(res)
         if(res['status'] == 200){
           localStorage.setItem('id_token',res["access_token"])
           // Swal.fire("Login Success","Welcome Back","info").then(()=>{
@@ -121,7 +155,6 @@ export class LoginComponent implements OnInit {
           // })
           Swal.fire("Login Success","Welcome to askthepro.","success").then(()=>{
             this.router.navigateByUrl('/home')
-            window.location.reload();
           })
         }
         },
@@ -172,4 +205,23 @@ export class LoginComponent implements OnInit {
       this.mySubscription.unsubscribe();
     }
   }
+
+  private MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
+        }
+
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
 }

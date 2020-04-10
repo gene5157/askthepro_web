@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiDataService } from '../api-data.service';
 import { Question } from '../question';
 import { GetUserService } from '../get-user.service';
 import swal from 'sweetalert2'; 
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post-question',
@@ -22,6 +23,8 @@ export class PostQuestionComponent implements OnInit {
   //   isAnswered: Boolean
 
   // };
+  questionForm: FormGroup;
+  submitted = false;
   post: Question;
   current_date:any;
   categories:any=[];
@@ -34,7 +37,7 @@ export class PostQuestionComponent implements OnInit {
   };
   user_id:any;
 
-  constructor(private router:Router, private queryService: ApiDataService, private userService: GetUserService) {
+  constructor(private formBuilder: FormBuilder, private router:Router, private queryService: ApiDataService, private userService: GetUserService) {
     
     this.post = new Question();
     this.current_date = this.dateFormat()
@@ -43,13 +46,13 @@ export class PostQuestionComponent implements OnInit {
 
   ngOnInit() {
     this.loadCategory()
-    this.loadTag()
+    //this.loadTag()
     this.loadComponent()
   }
 
   loadCategory(){
     this.queryService.getCategory().subscribe(result=>{
-      this.categories = result
+      this.categories = result['categorys']
       console.log(this.categories)
     })
   }
@@ -75,28 +78,55 @@ export class PostQuestionComponent implements OnInit {
   loadComponent() {
     //$(".summernote").summernote()
     $(document).ready(() => {
-      ($(".summernote") as any).summernote({ height: 150, width: "100%" });
+      ($(".summernote") as any).summernote({
+         height: 150,
+         width: "100%",
+         popover: {
+          image: [],
+          link: [],
+          air: []
+          }
+        });
     })
+      this.questionForm = this.formBuilder.group({
+          title: ['', Validators.required],
+          current_date: [{value: this.current_date, disabled: true}],
+          summary: ['', Validators.required],
+          category: ['', Validators.required]
+      });
   }
+   // convenience getter for easy access to form fields
+   get f() {
+      return this.questionForm.controls
+     }
 
-  postQuestion(){
+    //  test(){
+    //   this.submitted = true;
+    //   // stop here if form is invalid
+    //   if (this.questionForm.invalid) {
+    //       return;
+    //   }
+    //  }
+
+  postQuestion(values){
     let t = this;
     let Description = ($("#description") as any).summernote('code');
     var res = Description.replace(/"/g, '\\"').replace(/\n/g, '');
     var temp = this.countText(res)
-    console.log(temp)
-    console.log(t.post.title)
-    if(t.post.title == null){
-      t.valid.titleInvalid = true
-    }else{
-      t.valid.titleInvalid = false
-    }
-    if(t.post.summary == null){
-      t.valid.summaryInvalid = true
-    }else{
-      t.valid.summaryInvalid = false
-    }
-    if(t.post.category == null || t.post.category == ""){
+    console.log(values)
+    
+    // if(t.post.title == null){
+    //   t.valid.titleInvalid = true
+    // }else{
+    //   t.valid.titleInvalid = false
+    // }
+    // if(t.post.summary == null){
+    //   t.valid.summaryInvalid = true
+    // }else{
+    //   t.valid.summaryInvalid = false
+    // }
+    console.log(values.category)
+    if(values.category == "" ){
       t.valid.categoryInvalid = true
     }else{
       t.valid.categoryInvalid = false
@@ -106,31 +136,33 @@ export class PostQuestionComponent implements OnInit {
     }else{
       t.valid.descInvalid = false
     }
-    if(t.post.title != "" && t.post.summary != "" && t.post.category != "" &&
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.questionForm.invalid) {
+        return;
+    }
+    if(values.title != "" && values.summary != "" && values.category != "" &&
      temp != false){
-       if(t.post.categories_id == "1"){
-         t.post.category = "Web Programming"
-       }else if(t.post.categories_id == "2"){
-        t.post.category = "Web Database"
-      }else if(t.post.categories_id == "3"){
-        t.post.category = "Angular Web"
-      }else if(t.post.categories_id == "4"){
-        t.post.category = "Database Programming"
-      }
+      const data =this.questionForm.value as Question;
+      console.log(data.title,res)
        t.userService.retriveUser().subscribe(result=>{
          console.log(result)
           var today = new Date()
-          t.user_id = result[0].id
-          t.post.description = res
-          t.post.user_id = t.user_id
+          t.user_id = result['user'].id
+          t.post.title = data.title
           t.post.date_post = JSON.parse(JSON.stringify(today))
+          t.post.user_id = t.user_id
+          t.post.summary = data.summary
+          t.post.description = res
+          t.post.categories_id = data.category
           t.post.isAnswered = null
           console.log(t.post)
-         t.queryService.createQuestions(t.post).subscribe(res =>{
+         t.queryService.createQuestion('createQuestion',t.post).subscribe(res =>{
            console.log(res)
            if(res){
              swal.fire('Success','Question has already posted','success').then(()=>{
-             // t.router.navigate(['/dashboard'])
+             t.router.navigate(['/dashboard'])
+             
              })
            }
          })
@@ -152,6 +184,8 @@ export class PostQuestionComponent implements OnInit {
       }
     }else{return false}
   }
+ 
+  
   shortenText(description: String) {
 
     var str = $("<span>" + description + "</span>").text();
