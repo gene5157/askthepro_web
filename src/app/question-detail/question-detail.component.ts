@@ -43,6 +43,7 @@ export class QuestionDetailComponent implements OnInit {
   editAnswerID:any;
   editForm: FormGroup;
   descInvalid2: Boolean = false;
+  isAdmin:boolean = false;
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private activeRoute: ActivatedRoute, private queryService: ApiDataService, private auth: AuthService, private userService: GetUserService, private sanitizer: DomSanitizer) {
     this.activeRoute.params.subscribe(params => {
       this.question_id = params['question_id'];
@@ -114,6 +115,9 @@ export class QuestionDetailComponent implements OnInit {
       // this.userService.checkUser('id',this.userID).subscribe(res => {
       this.userService.retriveUser().subscribe(res => {
         this.current_user = res['user'].id
+        if(res['user'].role == "admin"){
+          this.isAdmin = true
+        }
         this.getUserPoint()
         console.log(res)
 

@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { ApiDataService } from '../api-data.service';
 import { Question } from '../question';
 import { QuestionFrameComponent } from '../question-frame/question-frame.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   };
   categoryData:any;
 
-  constructor(private router: Router, private http:HttpClient, private queryService: ApiDataService) { 
+  constructor(private sanitizer: DomSanitizer, private router: Router, private http:HttpClient, private queryService: ApiDataService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

@@ -69,7 +69,7 @@
               <small>Posted {{countDate(question.date_post)}}</small>
             </div>
             <p class="mb-1">{{question.summary}}</p>
-            <small>{{question.description}}</small>
+            <small [innerHtml]="sanitizer.bypassSecurityTrustHtml(question.description)"></small>
           </a>
         </div>
       </div>
