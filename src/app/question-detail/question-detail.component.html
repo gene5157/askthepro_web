@@ -105,7 +105,7 @@
   <mdb-card *ngFor="let ans of newAnswerList">
     <mdb-card-body>
       <div class="row">
-        <div class="col-1" *ngIf="isUserPost || isAdmin">
+        <div class="col-1" *ngIf="auth.isAuthenticated() == true && (isUserPost || isAdmin)">
           <div class="float-left">
             <span class="badge badge-pill cyan" style="cursor:pointer;" (click)="selectedBA(ans)"
               title="Select as Best Answer">

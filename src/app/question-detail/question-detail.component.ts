@@ -265,7 +265,8 @@ export class QuestionDetailComponent implements OnInit {
 
     var newBestAnswer = {
       isBestAnswered: 1,
-      id: value.id
+      id: value.id,
+      ques_id:0
     }
     if (this.bestAnswer != undefined) {
       // console.log(newAnswer)
@@ -281,7 +282,8 @@ export class QuestionDetailComponent implements OnInit {
         if (result.value) {
           var oldBestAnswer = {
             isBestAnswered: 0,
-            id: this.bestAnswer.id
+            id: this.bestAnswer.id,
+            ques_id:0
           }
           this.queryService.updBestAns(oldBestAnswer).subscribe(res => {
             console.log(res)

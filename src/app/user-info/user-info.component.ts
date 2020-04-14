@@ -291,16 +291,25 @@ export class UserInfoComponent implements OnInit {
       }).then((result) => {
         if (result.value) {
           //del ques
-          this.queryService.delQuestion(ques_id).subscribe(res => {
-            console.log(res);
-            ($("#editQues") as any).modal("hide");
-          swal.fire(
-            'Deleted!',
-            'Your Question has been deleted.',
-            'success'
-          )
-          this.router.navigate(['/dashboard'])
+          this.queryService.getQuesAns(id).subscribe(result => {
+            console.log(result['question'][0].answers.answers.answers)
+            if(result['question'][0].answers.answers.answers.length == 0){
+              this.queryService.delQuestion(ques_id).subscribe(res => {
+                console.log(res);
+                ($("#editQues") as any).modal("hide");
+              swal.fire(
+                'Deleted!',
+                'Your Question has been deleted.',
+                'success'
+              )
+              this.router.navigate(['/dashboard'])
+              })
+            }else{
+              swal.fire("Sorry","This question is not able to delete as it got answer. Please contact admin.","warning")
+            }
           })
+          
+          
         }
       })      
     }
