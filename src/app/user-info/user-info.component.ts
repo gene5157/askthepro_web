@@ -69,7 +69,7 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit() {
     this.showUser()
-    this.loadCategory()
+    this.loadCategory() 
     
     // $(document).ready(function () {
     //   $('#dtBasicExample').DataTable();
